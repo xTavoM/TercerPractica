@@ -1,0 +1,50 @@
+Aplicación de los montículos mínimos (Min-Heap) en el algoritmo de Dijkstra
+
+El algoritmo de Dijkstra es uno de los métodos fundamentales para determinar el costo
+mínimo de recorrido desde un vértice origen hacia todos los demás vértices de un grafo
+ponderado con pesos no negativos. Su funcionamiento se basa en un proceso iterativo en el
+cual se selecciona, en cada paso, el vértice con la distancia provisional más pequeña y se
+actualizan las distancias de sus vecinos.
+
+En una implementación básica, dicha selección del vértice mínimo se realiza mediante una
+búsqueda secuencial en una lista de distancias, lo cual implica un costo de O(V) para cada
+extracción. Este procedimiento, repetido para todos los vértices del grafo, genera una
+complejidad total de O(V²), la cual resulta ineficiente para grafos de tamaño considerable.
+
+El empleo de un montículo mínimo (min-heap) permite optimizar este comportamiento,
+actuando como una cola de prioridad en la cual las distancias provisionales se mantienen
+ordenadas conforme al valor mínimo. En un min-heap, la raíz representa siempre el elemento
+de menor valor. Gracias a esto, las operaciones de inserción y extracción del mínimo se
+ejecutan en tiempo O(log V), lo cual contribuye a un desempeño significativamente superior.
+
+Relación con las operaciones implementadas:
+
+1. insertar()
+   Cada vez que se descubre un camino más corto hacia un vértice, la nueva distancia
+   provisional se incorpora al montículo. El proceso upHeapify() se encarga de mantener la
+   estructura ordenada.
+
+2. eliminarMin()
+   Permite extraer el vértice con la menor distancia provisional, acción que constituye el paso
+   central del algoritmo de Dijkstra. El montículo se reajusta mediante downHeapify().
+
+3. peek()
+   Facilita la observación del valor mínimo sin modificar la estructura, lo cual puede utilizarse
+   para verificaciones internas.
+
+4. heapify()
+   Aunque no forma parte del ciclo principal de Dijkstra, esta operación permite construir un
+   montículo válido a partir de un conjunto inicial de distancias, optimizando su creación.
+
+Beneficio en complejidad:
+- Implementación sin montículo: O(V²)
+- Implementación con montículo mínimo: O((V + E) log V)
+
+Conclusión:
+El uso de un montículo mínimo constituye un componente esencial para mejorar la eficiencia
+del algoritmo de Dijkstra. Al permitir seleccionar el vértice con distancia mínima en tiempo
+logarítmico, el min-heap reduce significativamente el costo total del algoritmo y facilita su
+aplicación en grafos de gran escala. Los métodos insertar(), eliminarMin(), peek(),
+heapify() y los procesos de upHeapify() y downHeapify() aseguran que la estructura
+mantenga las propiedades necesarias para el funcionamiento correcto y eficiente del
+algoritmo.
